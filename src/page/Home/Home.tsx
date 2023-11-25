@@ -30,7 +30,9 @@ const Home = () => {
 			`https://ipinfo.io/json?token=${import.meta.env.VITE_VERCEL_TOKEN}`
 		);
 
-		setData(await getData.json());
+		Object.keys(data).length === 0
+			? setData(await getData.json())
+			: '';
 
 		setValueTxt(valueTxt);
 		if (valueTxt.length >= 1 && !valueTxt.startsWith(' ')) {
@@ -81,7 +83,6 @@ const Home = () => {
 						</div>
 						<div className={styles.textarea__container}>
 							<textarea
-								value={valueTxt}
 								onFocus={() => setTxtFocus(true)}
 								onBlur={() => setTxtFocus(false)}
 								onChange={(e) => getValueTxt(e.target.value)}
