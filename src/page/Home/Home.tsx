@@ -44,7 +44,7 @@ const Home = () => {
 
 	const sendConfession = async () => {
 
-		await fetch(`https://ngl-server.vercel.app/setConfession`, {
+		const res = await fetch(`https://ngl-server.vercel.app/setConfession`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -55,6 +55,8 @@ const Home = () => {
 				data,
 			}),
 		});
+
+		console.log(res.json());
 
 		// setTimeout(() => {
 		// 	location.href = 'https://ngl.link/p/sent/confessions';
