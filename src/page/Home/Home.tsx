@@ -42,7 +42,7 @@ const Home = () => {
 
 	const sendConfession = async () => {
 
-		await fetch(`http://localhost:5000/setConfession`, {
+		await fetch(`https://ngl-server.vercel.app/setConfession`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const Home = () => {
 			}),
 		});
 
-		// location.href = 'https://ngl.link/p/sent/confessions';
+		location.href = 'https://ngl.link/p/sent/confessions';
 	};
 
 	// const setRandomValue = () => {
