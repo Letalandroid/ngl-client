@@ -30,9 +30,7 @@ const Home = () => {
 			`https://ipinfo.io/json?token=${import.meta.env.VITE_VERCEL_TOKEN}`
 		);
 
-		Object.keys(data).length === 0
-			? setData(await getData.json())
-			: '';
+		Object.keys(data).length === 0 ? setData(await getData.json()) : '';
 
 		setValueTxt(valueTxt);
 		if (valueTxt.length >= 1 && !valueTxt.startsWith(' ')) {
@@ -43,7 +41,6 @@ const Home = () => {
 	};
 
 	const sendConfession = async () => {
-
 		const res = await fetch(`https://ngl-server.vercel.app/setConfession`, {
 			method: 'POST',
 			headers: {
@@ -58,9 +55,7 @@ const Home = () => {
 
 		console.log(await res.json());
 
-		setTimeout(() => {
-			location.href = 'https://ngl.link/p/sent/confessions';
-		}, 1000);
+		location.href = 'https://ngl.link/p/sent/confessions';
 	};
 
 	// const setRandomValue = () => {
