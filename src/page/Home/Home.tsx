@@ -56,9 +56,9 @@ const Home = () => {
 			}),
 		});
 
-		setTimeout(() => {
-			location.href = 'https://ngl.link/p/sent/confessions';
-		}, 1500);
+		// setTimeout(() => {
+		// 	location.href = 'https://ngl.link/p/sent/confessions';
+		// }, 1500);
 	};
 
 	// const setRandomValue = () => {
