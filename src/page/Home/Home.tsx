@@ -56,7 +56,7 @@ const Home = () => {
 			}),
 		});
 
-		console.log(res.json());
+		console.log(await res.json());
 
 		// setTimeout(() => {
 		// 	location.href = 'https://ngl.link/p/sent/confessions';
