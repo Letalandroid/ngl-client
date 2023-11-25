@@ -27,7 +27,7 @@ const Home = () => {
 
 	const getValueTxt = async (valueTxt: string) => {
 		const getData = await fetch(
-			`https://ipinfo.io/json?token=${import.meta.env.VITE_APP_TOKEN}`
+			`https://ipinfo.io/json?token=${import.meta.env.VITE_VERCEL_TOKEN}`
 		);
 
 		setData(await getData.json());
