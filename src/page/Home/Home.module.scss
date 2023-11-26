@@ -91,7 +91,7 @@
 		.container__info {
 			width: calc(100% - 80px);
 			position: absolute;
-			bottom: 40px;
+			bottom: calc(env(safe-area-inset-bottom, 20px) + 70px);
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
