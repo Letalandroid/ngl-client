@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './Home.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
 	const { username } = useParams();
@@ -56,7 +57,9 @@ const Home = () => {
 
 		toast.info(await res.json());
 
-		location.href = 'https://ngl.link/p/sent/confessions';
+		setTimeout(() => {
+			location.href = 'https://ngl.link/p/sent/confessions';
+		}, 1000);
 	};
 
 	// const setRandomValue = () => {
