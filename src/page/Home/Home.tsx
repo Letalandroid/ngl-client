@@ -59,7 +59,7 @@ const Home = () => {
 			}),
 		});
 
-		toast.info(await res.json());
+		toast(await res.json());
 
 		setTimeout(() => {
 			location.href = 'https://ngl.link/p/sent/confessions';
