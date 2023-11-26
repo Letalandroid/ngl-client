@@ -11,7 +11,7 @@ const Home = () => {
 	const [valueTxt, setValueTxt] = useState('');
 	const [txtFocus, setTxtFocus] = useState(false);
 	const [sendBtn, setSendBtn] = useState(false);
-	const [data, setData] = useState({});
+	const [_data, setData] = useState({});
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -29,14 +29,19 @@ const Home = () => {
 		setPersons(Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000);
 	}, 1500);
 
-	const getValueTxt = async (valueTxt: string) => {
-		const getData = await fetch(
-			`https://ipinfo.io/json?token=${import.meta.env.VITE_VERCEL_TOKEN}`
-		);
-
-		Object.keys(data).length === 0 ? setData(await getData.json()) : '';
-
+	const getValueTxt = (valueTxt: string) => {
 		setValueTxt(valueTxt);
+
+		const getIp = async () => {
+			await fetch(
+				`https://ipinfo.io/json?token=${import.meta.env.VITE_VERCEL_TOKEN}`
+			)
+				.then((res) => res.json())
+				.then((data) => (Object.keys(_data).length === 0 ? setData(data) : ''));
+		}
+
+		getIp();
+
 		if (valueTxt.length >= 1 && !valueTxt.startsWith(' ')) {
 			setSendBtn(true);
 		} else {
@@ -55,7 +60,7 @@ const Home = () => {
 			body: JSON.stringify({
 				username: username,
 				message: valueTxt,
-				data,
+				data: _data,
 			}),
 		});
 
@@ -92,7 +97,9 @@ const Home = () => {
 							<textarea
 								onFocus={() => setTxtFocus(true)}
 								onBlur={() => setTxtFocus(false)}
-								onChange={(e) => getValueTxt(e.target.value)}
+								onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+									getValueTxt(e.target.value)
+								}
 								placeholder="envíame mensajes anónimos..."
 							/>
 							<button>🎲</button>
@@ -104,7 +111,9 @@ const Home = () => {
 					{sendBtn ? (
 						<button onClick={sendConfession} className={styles.button}>
 							{loading ? (
-								<PacmanLoader className={styles.pacman} color={'#fff'} loading={loading} size={10} />
+								<div className={styles.pacman__container}>
+									<PacmanLoader color={'#fff'} loading={loading} size={12} />
+								</div>
 							) : (
 								<b>¡Enviar!</b>
 							)}
