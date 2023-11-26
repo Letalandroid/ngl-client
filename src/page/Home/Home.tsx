@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import styles from './Home.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PacmanLoader } from 'react-spinners';
 
 const Home = () => {
 	const { username } = useParams();
@@ -11,6 +12,7 @@ const Home = () => {
 	const [txtFocus, setTxtFocus] = useState(false);
 	const [sendBtn, setSendBtn] = useState(false);
 	const [data, setData] = useState({});
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		document.title = `💖 @${username} 😍`;
@@ -43,6 +45,8 @@ const Home = () => {
 	};
 
 	const sendConfession = async () => {
+		setLoading(true);
+
 		const res = await fetch(`https://ngl-server.vercel.app/setConfession`, {
 			method: 'POST',
 			headers: {
@@ -90,8 +94,6 @@ const Home = () => {
 								onBlur={() => setTxtFocus(false)}
 								onChange={(e) => getValueTxt(e.target.value)}
 								placeholder="envíame mensajes anónimos..."
-								name=""
-								id=""
 							/>
 							<button>🎲</button>
 						</div>
@@ -101,7 +103,11 @@ const Home = () => {
 					</p>
 					{sendBtn ? (
 						<button onClick={sendConfession} className={styles.button}>
-							<b>¡Enviar!</b>
+							{loading ? (
+								<PacmanLoader color={'#fff'} loading={loading} size={20} />
+							) : (
+								<b>¡Enviar!</b>
+							)}
 						</button>
 					) : (
 						''
