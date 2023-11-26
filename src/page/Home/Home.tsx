@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './Home.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
 	const { username } = useParams();
@@ -53,7 +54,7 @@ const Home = () => {
 			}),
 		});
 
-		console.log(await res.json());
+		toast.info(await res.json());
 
 		location.href = 'https://ngl.link/p/sent/confessions';
 	};
@@ -122,6 +123,7 @@ const Home = () => {
 					</div>
 				)}
 			</div>
+			<ToastContainer />
 		</main>
 	);
 };
