@@ -104,7 +104,7 @@ const Home = () => {
 					{sendBtn ? (
 						<button onClick={sendConfession} className={styles.button}>
 							{loading ? (
-								<PacmanLoader color={'#fff'} loading={loading} size={20} />
+								<PacmanLoader className={styles.pacman} color={'#fff'} loading={loading} size={10} />
 							) : (
 								<b>¡Enviar!</b>
 							)}
